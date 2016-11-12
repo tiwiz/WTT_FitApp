@@ -1,30 +1,38 @@
 package net.orgiu.wttfitapp;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
-import com.google.android.gms.common.Scopes;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.fitness.Fitness;
+import net.orgiu.wttfitapp.client.ApiClientBuilder;
+import net.orgiu.wttfitapp.client.ApiClientManager;
+import net.orgiu.wttfitapp.client.ApiConnectionCallbacks;
+import net.orgiu.wttfitapp.client.ApiConnectionFailedCallbacks;
+import net.orgiu.wttfitapp.client.ClientContract;
+import net.orgiu.wttfitapp.client.ClientPresenter;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements ClientContract.View{
+    private ClientContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        presenter = new ClientPresenter(this);
     }
 
+    public void onConnectButtonClicked(View v) {
+        presenter.connect();
+    }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onConnected() {
 
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onConnectionFailed() {
+
     }
 }
