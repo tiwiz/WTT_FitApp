@@ -24,7 +24,7 @@ public class ClientPresenter implements ClientContract.Presenter {
 
     @Override
     public void onConnected() {
-        view.onConnected();
+        view.onConnected(apiClientManager.getApiClient());
     }
 
     @Override

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WTT Fit App</string>
+    <string name="client_view_connect_to_google_fit">Connect to Google Fit</string>
 </resources>

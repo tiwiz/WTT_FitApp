@@ -1,6 +1,8 @@
 package net.orgiu.wttfitapp.client;
 
 
+import com.google.android.gms.common.api.GoogleApiClient;
+
 public interface ClientContract {
 
     interface Presenter {
@@ -12,7 +14,8 @@ public interface ClientContract {
     }
 
     interface View {
-        void onConnected();
+        void setPresenter(Presenter presenter);
+        void onConnected(GoogleApiClient client);
         void onConnectionFailed();
     }
 }

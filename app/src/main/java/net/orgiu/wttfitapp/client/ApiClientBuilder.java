@@ -35,4 +35,9 @@ public class ApiClientBuilder implements ApiClientManager {
 
         apiClient.connect();
     }
+
+    @Override
+    public GoogleApiClient getApiClient() {
+        return apiClient;
+    }
 }
