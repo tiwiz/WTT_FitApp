@@ -8,25 +8,37 @@ import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import net.orgiu.wttfitapp.DutyChangeListener;
 import net.orgiu.wttfitapp.R;
 
 
 public class ClientView extends RelativeLayout implements ClientContract.View{
     private ClientContract.Presenter presenter;
     private ImageView googleFitIcon, errorIcon;
+    private final DutyChangeListener listener;
 
     public ClientView(Context context) {
         super(context);
+        listener = from(context);
     }
 
     public ClientView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        listener = from(context);
         inflate();
     }
 
     public ClientView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        listener = from(context);
         inflate();
+    }
+
+    private DutyChangeListener from(Context context) {
+        if (context instanceof DutyChangeListener) {
+            return (DutyChangeListener) context;
+        }
+        return EmptyDutyChangeListener.INSTANCE;
     }
 
     private void inflate() {
@@ -48,8 +60,8 @@ public class ClientView extends RelativeLayout implements ClientContract.View{
     }
 
     private void resetImagesVisibility() {
-        errorIcon.setVisibility(View.VISIBLE);
-        googleFitIcon.setVisibility(View.GONE);
+        errorIcon.setVisibility(View.GONE);
+        googleFitIcon.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -60,7 +72,7 @@ public class ClientView extends RelativeLayout implements ClientContract.View{
 
     @Override
     public void onConnected(GoogleApiClient client) {
-
+        listener.onDutyChangeRequested(client);
     }
 
     @Override

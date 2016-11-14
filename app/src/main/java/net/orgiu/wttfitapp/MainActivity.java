@@ -14,15 +14,20 @@ import net.orgiu.wttfitapp.client.ClientContract;
 import net.orgiu.wttfitapp.client.ClientPresenter;
 import net.orgiu.wttfitapp.client.ClientView;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements DutyChangeListener{
+    private ClientView clientView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ClientView clientView = (ClientView) findViewById(R.id.clientConnectView);
+        clientView = (ClientView) findViewById(R.id.clientConnectView);
         clientView.setPresenter(new ClientPresenter(this));
     }
 
+    @Override
+    public void onDutyChangeRequested(GoogleApiClient client) {
+        clientView.setVisibility(View.GONE);
+    }
 }
