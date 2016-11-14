@@ -68,6 +68,7 @@ public class ClientView extends RelativeLayout implements ClientContract.View{
     public void setPresenter(ClientContract.Presenter presenter) {
         this.presenter = presenter;
         presenter.setView(this);
+        connect();
     }
 
     @Override
