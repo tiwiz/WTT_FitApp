@@ -28,6 +28,7 @@ public class ApiClientBuilder implements ApiClientManager {
         if (apiClient == null) {
             apiClient = new GoogleApiClient.Builder(activity).addApi(Fitness.SESSIONS_API)
                     .addScope(new Scope(Scopes.FITNESS_ACTIVITY_READ))
+                    .addScope(new Scope(Scopes.FITNESS_LOCATION_READ))
                     .addConnectionCallbacks(connectionCallbacks)
                     .enableAutoManage(activity, 0, onConnectionFailedListener)
                     .build();
