@@ -13,6 +13,7 @@ class SessionBuilder {
         readRequest = new SessionReadRequest.Builder()
                 .setTimeInterval(d.getStartTime(), d.getEndTime(), TimeUnit.MILLISECONDS)
                 .readSessionsFromAllApps()
+                .enableServerQueries()
                 .build();
     }
 
